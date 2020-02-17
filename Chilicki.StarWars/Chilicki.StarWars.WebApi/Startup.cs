@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Chilicki.StarWars.WebApi.Configurations.DependencyInjection;
+using Chilicki.StarWars.WebApi.Configurations.ErrorHandling;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,8 @@ namespace Chilicki.StarWars.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware(typeof(ErrorMiddlewareHandler));
 
             app.UseCors("AllowAll");
 
