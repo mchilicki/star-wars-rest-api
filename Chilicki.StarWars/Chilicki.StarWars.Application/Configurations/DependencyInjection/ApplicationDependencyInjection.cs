@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using Chilicki.StarWars.Application.Configurations.Automapper;
+using Chilicki.StarWars.Application.Factories;
 using Chilicki.StarWars.Application.Services;
 using Chilicki.StarWars.Application.Services.Base;
+using Chilicki.StarWars.Application.Updaters;
+using Chilicki.StarWars.Application.Validators;
 using Chilicki.StarWars.Data.Configurations.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,12 +31,13 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
 
         private void ConfigureValidators(IServiceCollection services)
         {
-
+            services.AddScoped<CharacterValidator>();
         }
 
         private void ConfigureFactories(IServiceCollection services)
         {
-            
+            services.AddScoped<CharacterFactory>();
+            services.AddScoped<CharacterUpdater>();
         }
 
         private void ConfigureAutomapper(IServiceCollection services)
