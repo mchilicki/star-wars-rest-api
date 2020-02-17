@@ -3,6 +3,7 @@ using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Application.Factories
 {
@@ -10,6 +11,6 @@ namespace Chilicki.StarWars.Application.Factories
         where TEntity : BaseEntity
         where TDataDto : IDataDto     
     {
-        TEntity Create(TDataDto dto);
+        Task<TEntity> Create(TDataDto dto);
     }
 }

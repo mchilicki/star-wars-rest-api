@@ -3,6 +3,7 @@ using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Application.Updaters
 {
@@ -10,6 +11,6 @@ namespace Chilicki.StarWars.Application.Updaters
         where TEntity : BaseEntity
         where TDataDto : IDataDto
     {
-        TEntity Update(TEntity entity, TDataDto dto);
+        Task<TEntity> Update(TEntity entity, TDataDto dto);
     }
 }

@@ -59,7 +59,7 @@ namespace Chilicki.StarWars.Application.Services
         public async Task<TDto> Create(TDataDto dto)
         {
             validator.ValidateAddOrUpdate(dto);
-            var entity = factory.Create(dto);
+            var entity = await factory.Create(dto);
             var addedEntity = await repository.AddAsync(entity);
             await unitOfWork.SaveAsync();
             return mapper.Map<TDto>(addedEntity);
@@ -70,7 +70,7 @@ namespace Chilicki.StarWars.Application.Services
             validator.ValidateAddOrUpdate(dto);
             var entity = await repository.FindAsync(id);
             validator.ValidateFind(entity);
-            updater.Update(entity, dto);
+            await updater.Update(entity, dto);
             await unitOfWork.SaveAsync();
         }
 

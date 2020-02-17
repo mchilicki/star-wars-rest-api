@@ -13,10 +13,13 @@ namespace Chilicki.StarWars.Application.Configurations.Automapper
     {
         public AutomapperProfile()
         {
-            CreateMap<Character, CharacterDto>();
-            CreateMap<CharacterDto, Character>();
+            CreateMap<BaseEntity, EntityDto>();
+            CreateMap<BaseNamedEntity, NamedEntityDto>();
+            CreateMap<Character, CharacterDto>()
+                .ForMember(p => p.Episodes, p => p.MapFrom(e => e.CharacterEpisodes));
             CreateMap<Episode, EpisodeDto>();
-            CreateMap<EpisodeDto, Episode>();
+            CreateMap<CharacterEpisode, EpisodeDto>()
+                .IncludeMembers(p => p.Episode);
         }
     }
 }

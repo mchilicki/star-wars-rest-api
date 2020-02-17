@@ -4,6 +4,7 @@ using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Application.Factories
 {
@@ -17,10 +18,10 @@ namespace Chilicki.StarWars.Application.Factories
             this.episodeUpdater = episodeUpdater;
         }
 
-        public Episode Create(EpisodeDataDto dto)
+        public async Task<Episode> Create(EpisodeDataDto dto)
         {
             var episode = new Episode();
-            return episodeUpdater.Update(episode, dto);
+            return await episodeUpdater.Update(episode, dto);
         }
     }
 }

@@ -45,6 +45,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
             services.AddScoped<CharacterUpdater>();
             services.AddScoped<EpisodeFactory>();
             services.AddScoped<EpisodeUpdater>();
+            services.AddScoped<CharacterEpisodeFactory>();
         }
 
         private void ConfigureAutomapper(IServiceCollection services)

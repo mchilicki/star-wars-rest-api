@@ -1,4 +1,5 @@
 ﻿using Chilicki.StarWars.Data.Entities;
+using Chilicki.StarWars.Data.Helpers.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,12 @@ namespace Chilicki.StarWars.Data.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await entities.ToListAsync();
+            return await entities.IncludeAll().ToListAsync();
         }
 
         public async Task<TEntity> FindAsync(Guid id)
         {
-            return await entities.SingleOrDefaultAsync(p => p.Id == id);
+            return await entities.IncludeAll().SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)

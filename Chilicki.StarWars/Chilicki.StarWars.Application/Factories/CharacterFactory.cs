@@ -5,6 +5,7 @@ using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Application.Factories
 {
@@ -18,10 +19,10 @@ namespace Chilicki.StarWars.Application.Factories
             this.characterUpdater = characterUpdater;
         }
 
-        public Character Create(CharacterDataDto dto)
+        public async Task<Character> Create(CharacterDataDto dto)
         {
             var character = new Character();
-            return characterUpdater.Update(character, dto);
+            return await characterUpdater.Update(character, dto);
         }
     }
 }
