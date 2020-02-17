@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Chilicki.StarWars.Application.Dtos;
+using Chilicki.StarWars.Application.Dtos.Characters;
+using Chilicki.StarWars.Application.Dtos.Episodes;
 using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace Chilicki.StarWars.Application.Configurations.Automapper
         {
             CreateMap<Character, CharacterDto>();
             CreateMap<CharacterDto, Character>();
+            CreateMap<Episode, EpisodeDto>();
+            CreateMap<EpisodeDto, Episode>();
         }
     }
 }

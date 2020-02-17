@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Chilicki.StarWars.Application.Dtos;
+using Chilicki.StarWars.Application.Dtos.Characters;
 using Chilicki.StarWars.Application.Factories;
 using Chilicki.StarWars.Application.Updaters;
 using Chilicki.StarWars.Application.Validators;

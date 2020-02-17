@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Chilicki.StarWars.Application.Dtos
 {
-    public abstract class EntityDto
+    public abstract class EntityDto : IDto
     {
         public Guid Id { get; set; }
     }

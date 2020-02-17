@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Chilicki.StarWars.Application.Dtos;
+using Chilicki.StarWars.Application.Dtos.Characters;
 using Chilicki.StarWars.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Chilicki.StarWars.Application.Dtos;
 using Chilicki.StarWars.Application.Factories;
-using Chilicki.StarWars.Application.Services.Base;
 using Chilicki.StarWars.Application.Updaters;
 using Chilicki.StarWars.Application.Validators;
 using Chilicki.StarWars.Data.Databases.UnitOfWorks;
@@ -9,7 +8,6 @@ using Chilicki.StarWars.Data.Entities;
 using Chilicki.StarWars.Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Application.Services
@@ -54,13 +52,13 @@ namespace Chilicki.StarWars.Application.Services
         public async Task<TDto> Find(Guid id)
         {
             var entity = await repository.FindAsync(id);
-            validator.Validate(entity);
+            validator.ValidateFind(entity);
             return mapper.Map<TDto>(entity);
         }
 
         public async Task<TDto> Create(TDataDto dto)
         {
-            validator.Validate(dto);
+            validator.ValidateAddOrUpdate(dto);
             var entity = factory.Create(dto);
             var addedEntity = await repository.AddAsync(entity);
             await unitOfWork.SaveAsync();
@@ -69,9 +67,9 @@ namespace Chilicki.StarWars.Application.Services
 
         public async Task Update(Guid id, TDataDto dto)
         {
-            validator.Validate(dto);
+            validator.ValidateAddOrUpdate(dto);
             var entity = await repository.FindAsync(id);
-            validator.Validate(entity);
+            validator.ValidateFind(entity);
             updater.Update(entity, dto);
             await unitOfWork.SaveAsync();
         }

@@ -1,4 +1,5 @@
 ﻿using Chilicki.StarWars.Application.Dtos;
+using Chilicki.StarWars.Application.Dtos.Characters;
 using Chilicki.StarWars.Application.Helpers.Exceptions;
 using Chilicki.StarWars.Data.Entities;
 using System;
@@ -9,20 +10,22 @@ namespace Chilicki.StarWars.Application.Validators
 {
     public class CharacterValidator : IValidator<Character, CharacterDataDto>
     {
-        private readonly int NAME_MAX_CHARACTERS = 100;
+        private readonly NullValidator validator;
 
-        public void Validate(Character character)
+        public CharacterValidator(
+            NullValidator validator)
         {
-            if (character == null)
-                throw new NotFoundException("Character not found");
+            this.validator = validator;
         }
 
-        public void Validate(CharacterDataDto dto)
+        public void ValidateFind(Character character)
         {
-            if (string.IsNullOrWhiteSpace(dto.Name))
-                throw new InvalidCharacterException("Character name is empty.");
-            if (dto.Name.Length > NAME_MAX_CHARACTERS)
-                throw new InvalidCharacterException($"Character name is too long. Maximum length is {NAME_MAX_CHARACTERS} characters.");
+            validator.Validate(character);
+        }
+
+        public void ValidateAddOrUpdate(CharacterDataDto dto)
+        {
+            
         }
     }
 }

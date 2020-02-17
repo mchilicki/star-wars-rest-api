@@ -10,7 +10,7 @@ namespace Chilicki.StarWars.Application.Validators
         where TEntity : BaseEntity
         where TDataDto : IDataDto
     {
-        void Validate(TEntity character);
-        void Validate(TDataDto dto);
+        void ValidateFind(TEntity character);
+        void ValidateAddOrUpdate(TDataDto dto);
     }
 }

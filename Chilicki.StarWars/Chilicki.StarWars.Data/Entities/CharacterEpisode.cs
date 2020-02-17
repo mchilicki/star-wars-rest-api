@@ -8,7 +8,7 @@ namespace Chilicki.StarWars.Data.Entities
     {
         public Guid CharacterId { get; set; }
         public Guid EpisodeId { get; set; }
-        public Character Character { get; set; }
-        public Episode Episode { get; set; }
+        public virtual Character Character { get; set; }
+        public virtual Episode Episode { get; set; }
     }
 }

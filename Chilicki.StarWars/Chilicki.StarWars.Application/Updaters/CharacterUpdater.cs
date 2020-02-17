@@ -1,4 +1,5 @@
 ﻿using Chilicki.StarWars.Application.Dtos;
+using Chilicki.StarWars.Application.Dtos.Characters;
 using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
