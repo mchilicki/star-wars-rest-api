@@ -16,6 +16,8 @@ namespace Chilicki.StarWars.Data.Databases
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
+            modelBuilder.ApplyConfiguration(new EpisodeConfiguration());
+            modelBuilder.ApplyConfiguration(new CharacterEpisodeConfiguration());
         }
     }
 }

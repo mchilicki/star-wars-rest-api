@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Chilicki.StarWars.Data.Entities
 {
-    public class Character : BaseEntity
+    public class Character : BaseNamedEntity
     {
-        public string Name { get; set; }
+        public virtual ICollection<CharacterEpisode> CharacterEpisodes { get; set; }
     }
 }
