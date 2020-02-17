@@ -1,4 +1,5 @@
 ﻿using Chilicki.StarWars.Application.Dtos.Characters;
+using Chilicki.StarWars.Application.Dtos.Episodes;
 using Chilicki.StarWars.Application.Factories;
 using Chilicki.StarWars.Application.Services;
 using Chilicki.StarWars.Application.Updaters;
@@ -10,13 +11,13 @@ namespace Chilicki.StarWars.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CharacterController : CrudController
-        <Character, CharacterDto, CharacterDataDto,
-        CharacterFactory, CharacterUpdater, CharacterValidator>
+    public class EpisodeController : CrudController
+        <Episode, EpisodeDto, EpisodeDataDto,
+        EpisodeFactory, EpisodeUpdater, EpisodeValidator>
     {
-        public CharacterController(
-            CrudService<Character, CharacterDto, CharacterDataDto, 
-                CharacterFactory, CharacterUpdater, CharacterValidator> service) : base(service)
+        public EpisodeController(
+            CrudService<Episode, EpisodeDto, EpisodeDataDto,
+                EpisodeFactory, EpisodeUpdater, EpisodeValidator> service) : base(service)
         {
         }
     }

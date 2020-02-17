@@ -6,5 +6,6 @@ namespace Chilicki.StarWars.Application.Dtos
 {
     public interface IDto
     {
+        Guid Id { get; set; }
     }
 }
