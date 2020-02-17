@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Chilicki.StarWars.Application.Updaters
 {
-    public class CharacterUpdater
+    public class CharacterUpdater : IUpdater<Character, CharacterDataDto>
     {
-        internal Character Update(Character character, CharacterDataDto dto)
+        public Character Update(Character character, CharacterDataDto dto)
         {
             character.Name = dto.Name;
             return character;

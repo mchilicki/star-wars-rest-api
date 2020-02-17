@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Chilicki.StarWars.Application.Dtos;
-using Chilicki.StarWars.Application.Services.Base;
+using Chilicki.StarWars.Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,31 +11,31 @@ namespace Chilicki.StarWars.WebApi.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly ICharacterService characterService;
+        private readonly CharacterService service;
 
         public CharacterController(
-            ICharacterService characterService)
+            CharacterService characterService)
         {
-            this.characterService = characterService;
+            this.service = characterService;
         }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
-            => Ok(await characterService.GetAll());
+            => Ok(await service.GetAll());
 
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get(Guid id)
-            => Ok(await characterService.Find(id));
+            => Ok(await service.Find(id));
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] CharacterDataDto dto)
         {
-            var character = await characterService.Create(dto);
+            var character = await service.Create(dto);
             return CreatedAtAction(nameof(Get), new { id = character.Id }, character);
         }
 
@@ -47,7 +45,7 @@ namespace Chilicki.StarWars.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Put(Guid id, [FromBody] CharacterDataDto dto)
         {
-            await characterService.Update(id, dto);
+            await service.Update(id, dto);
             return NoContent();
         }
 
@@ -55,7 +53,7 @@ namespace Chilicki.StarWars.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            await characterService.Delete(id);
+            await service.Delete(id);
             return NoContent();
         }
     }

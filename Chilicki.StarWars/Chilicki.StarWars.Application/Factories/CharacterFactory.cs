@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Chilicki.StarWars.Application.Factories
 {
-    public class CharacterFactory
+    public class CharacterFactory : IFactory<Character, CharacterDataDto>
     {
         private readonly CharacterUpdater characterUpdater;
 
@@ -17,7 +17,7 @@ namespace Chilicki.StarWars.Application.Factories
             this.characterUpdater = characterUpdater;
         }
 
-        internal Character Create(CharacterDataDto dto)
+        public Character Create(CharacterDataDto dto)
         {
             var character = new Character();
             return characterUpdater.Update(character, dto);

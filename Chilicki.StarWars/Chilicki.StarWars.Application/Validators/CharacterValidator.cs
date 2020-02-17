@@ -7,17 +7,17 @@ using System.Text;
 
 namespace Chilicki.StarWars.Application.Validators
 {
-    public class CharacterValidator
+    public class CharacterValidator : IValidator<Character, CharacterDataDto>
     {
         private readonly int NAME_MAX_CHARACTERS = 100;
 
-        internal void Validate(Character character)
+        public void Validate(Character character)
         {
             if (character == null)
                 throw new NotFoundException("Character not found");
         }
 
-        internal void Validate(CharacterDataDto dto)
+        public void Validate(CharacterDataDto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Name))
                 throw new InvalidCharacterException("Character name is empty.");
