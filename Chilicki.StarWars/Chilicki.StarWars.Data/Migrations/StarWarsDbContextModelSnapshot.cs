@@ -51,6 +51,21 @@ namespace Chilicki.StarWars.Data.Migrations
                     b.ToTable("CharacterEpisode");
                 });
 
+            modelBuilder.Entity("Chilicki.StarWars.Data.Entities.CharacterFriend", b =>
+                {
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FriendId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CharacterId", "FriendId");
+
+                    b.HasIndex("FriendId");
+
+                    b.ToTable("CharacterFriend");
+                });
+
             modelBuilder.Entity("Chilicki.StarWars.Data.Entities.Episode", b =>
                 {
                     b.Property<Guid>("Id")
@@ -80,6 +95,21 @@ namespace Chilicki.StarWars.Data.Migrations
                         .WithMany("CharacterEpisodes")
                         .HasForeignKey("EpisodeId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Chilicki.StarWars.Data.Entities.CharacterFriend", b =>
+                {
+                    b.HasOne("Chilicki.StarWars.Data.Entities.Character", "Character")
+                        .WithMany("CharacterFriends")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Chilicki.StarWars.Data.Entities.Character", "Friend")
+                        .WithMany()
+                        .HasForeignKey("FriendId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

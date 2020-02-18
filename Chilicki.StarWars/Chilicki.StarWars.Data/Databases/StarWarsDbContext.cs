@@ -18,6 +18,7 @@ namespace Chilicki.StarWars.Data.Databases
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
             modelBuilder.ApplyConfiguration(new EpisodeConfiguration());
             modelBuilder.ApplyConfiguration(new CharacterEpisodeConfiguration());
+            modelBuilder.ApplyConfiguration(new CharacterFriendConfiguration());
         }
     }
 }

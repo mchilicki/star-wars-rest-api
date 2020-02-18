@@ -29,6 +29,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
                 CharacterFactory, CharacterUpdater, CharacterValidator>>();
             services.AddScoped<CrudService<Episode, EpisodeDto, EpisodeDataDto,
                 EpisodeFactory, EpisodeUpdater, EpisodeValidator>>();
+            services.AddScoped<FriendService>();
         }
 
         private void ConfigureValidators(IServiceCollection services)
