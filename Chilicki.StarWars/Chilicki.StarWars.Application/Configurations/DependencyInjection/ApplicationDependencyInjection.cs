@@ -38,6 +38,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
             services.AddScoped<NameValidator>();
             services.AddScoped<CharacterValidator>();
             services.AddScoped<EpisodeValidator>();
+            services.AddScoped<CharacterFriendValidator>();
         }
 
         private void ConfigureFactories(IServiceCollection services)
@@ -47,6 +48,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
             services.AddScoped<EpisodeFactory>();
             services.AddScoped<EpisodeUpdater>();
             services.AddScoped<CharacterEpisodeFactory>();
+            services.AddScoped<CharacterFriendFactory>();
         }
 
         private void ConfigureAutomapper(IServiceCollection services)
