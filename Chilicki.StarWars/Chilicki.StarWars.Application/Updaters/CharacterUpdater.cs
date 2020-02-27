@@ -31,16 +31,23 @@ namespace Chilicki.StarWars.Application.Updaters
         public async Task<Character> Update(Character character, CharacterDataDto dto)
         {
             character.Name = dto.Name;
+            await UpdateEpisodes(character, dto);
+            return character;
+        }
+
+        private async Task UpdateEpisodes(Character character, CharacterDataDto dto)
+        {
             if (character.CharacterEpisodes == null)
                 character.CharacterEpisodes = new List<CharacterEpisode>();
             character.CharacterEpisodes.Clear();
+            if (dto.EpisodeIds == null)
+                return;
             foreach (var episodeId in dto.EpisodeIds)
             {
                 var episode = await episodeRepository.FindAsync(episodeId);
                 episodeValidator.ValidateFind(episode);
                 character.CharacterEpisodes.Add(characterEpisodeFactory.Create(character, episode));
             }
-            return character;
         }
     }
 }
