@@ -15,14 +15,14 @@ namespace Chilicki.StarWars.Application.Services
         private readonly IBaseRepository<Character> characterRepository;
         private readonly CharacterFriendFactory characterFriendFactory;
         private readonly IUnitOfWork unitOfWork;
-        private readonly CharacterFriendRepository characterFriendRepository;
+        private readonly ICharacterFriendRepository characterFriendRepository;
         private readonly CharacterFriendValidator characterFriendValidator;
 
         public FriendService(
             IBaseRepository<Character> characterRepository,
             CharacterFriendFactory characterFriendFactory,
             IUnitOfWork unitOfWork,
-            CharacterFriendRepository characterFriendRepository,
+            ICharacterFriendRepository characterFriendRepository,
             CharacterFriendValidator characterFriendValidator)
         {
             this.characterRepository = characterRepository;

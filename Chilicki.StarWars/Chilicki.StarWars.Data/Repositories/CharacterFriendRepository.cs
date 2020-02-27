@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Data.Repositories
 {
-    public class CharacterFriendRepository
+    public class CharacterFriendRepository : ICharacterFriendRepository
     {
         protected DbContext context;
         protected DbSet<CharacterFriend> entities;

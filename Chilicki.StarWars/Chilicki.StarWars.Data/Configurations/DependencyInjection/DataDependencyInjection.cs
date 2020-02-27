@@ -37,7 +37,7 @@ namespace Chilicki.StarWars.Data.Configurations.DependencyInjection
             services.AddScoped<IBaseRepository<BaseNamedEntity>, BaseRepository<BaseNamedEntity>>();
             services.AddScoped<IBaseRepository<Character>, CharacterRepository>();
             services.AddScoped<IBaseRepository<Episode>, EpisodeRepository>();
-            services.AddScoped<CharacterFriendRepository>();
+            services.AddScoped<ICharacterFriendRepository, CharacterFriendRepository>();
         }
     }
 }

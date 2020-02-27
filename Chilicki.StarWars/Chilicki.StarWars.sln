@@ -9,11 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. WebApi", "3. WebApi", "{BFD4D34C-1D7B-4BFF-8BC4-FE13B8C1058C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chilicki.StarWars.Data", "Chilicki.StarWars.Data\Chilicki.StarWars.Data.csproj", "{FDA7DE65-5016-403D-97A0-4B11D58EDBA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chilicki.StarWars.Data", "Chilicki.StarWars.Data\Chilicki.StarWars.Data.csproj", "{FDA7DE65-5016-403D-97A0-4B11D58EDBA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chilicki.StarWars.Application", "Chilicki.StarWars.Application\Chilicki.StarWars.Application.csproj", "{9C17AB43-A59E-4A3F-B6D0-BFEE62EAE264}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chilicki.StarWars.Application", "Chilicki.StarWars.Application\Chilicki.StarWars.Application.csproj", "{9C17AB43-A59E-4A3F-B6D0-BFEE62EAE264}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chilicki.StarWars.WebApi", "Chilicki.StarWars.WebApi\Chilicki.StarWars.WebApi.csproj", "{1EFDD507-7690-43DB-9801-4ED50BDC456D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chilicki.StarWars.WebApi", "Chilicki.StarWars.WebApi\Chilicki.StarWars.WebApi.csproj", "{1EFDD507-7690-43DB-9801-4ED50BDC456D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chilicki.StarWars.Application.Tests", "Chilicki.StarWars.Application.Tests\Chilicki.StarWars.Application.Tests.csproj", "{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1EFDD507-7690-43DB-9801-4ED50BDC456D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EFDD507-7690-43DB-9801-4ED50BDC456D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EFDD507-7690-43DB-9801-4ED50BDC456D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{FDA7DE65-5016-403D-97A0-4B11D58EDBA9} = {897A8C3A-858F-452C-B20F-9E0DAD3E4E4F}
 		{9C17AB43-A59E-4A3F-B6D0-BFEE62EAE264} = {267EBE80-C422-4851-9FFE-11815294F2EC}
 		{1EFDD507-7690-43DB-9801-4ED50BDC456D} = {BFD4D34C-1D7B-4BFF-8BC4-FE13B8C1058C}
+		{AF9F173E-E0A1-40D1-BB7B-D86C20F665FC} = {267EBE80-C422-4851-9FFE-11815294F2EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77F9FF59-D936-42E3-A01B-C9C00EA64119}

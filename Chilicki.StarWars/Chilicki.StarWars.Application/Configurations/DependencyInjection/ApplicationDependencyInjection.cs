@@ -54,7 +54,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
             services.AddScoped(typeof(PageFactory<>));
         }
 
-        private void ConfigureAutomapper(IServiceCollection services)
+        public void ConfigureAutomapper(IServiceCollection services)
         {
             var container = services.BuildServiceProvider();
             var mappingConfig = new MapperConfiguration(mc =>
