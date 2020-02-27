@@ -34,7 +34,7 @@ namespace Chilicki.StarWars.Data.Configurations.DependencyInjection
         private void RegisterRepositories(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IBaseRepository<BaseEntity>, BaseRepository<BaseEntity>>();
+            services.AddScoped<IBaseRepository<BaseNamedEntity>, BaseRepository<BaseNamedEntity>>();
             services.AddScoped<IBaseRepository<Character>, CharacterRepository>();
             services.AddScoped<IBaseRepository<Episode>, EpisodeRepository>();
             services.AddScoped<CharacterFriendRepository>();

@@ -1,4 +1,4 @@
-﻿using Chilicki.StarWars.Application.Helpers.Exceptions;
+﻿using Chilicki.StarWars.Data.Helpers.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;

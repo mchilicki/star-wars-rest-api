@@ -1,14 +1,16 @@
 ﻿using Chilicki.StarWars.Data.Entities;
+using Chilicki.StarWars.Data.Helpers.Exceptions;
 using Chilicki.StarWars.Data.Helpers.Extensions;
+using Chilicki.StarWars.Data.Helpers.Paging;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Chilicki.StarWars.Data.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseNamedEntity
     {
         protected DbContext context;
         protected DbSet<TEntity> entities;
@@ -21,12 +23,30 @@ namespace Chilicki.StarWars.Data.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await entities.IncludeAll().ToListAsync();
+            return await entities
+                .IncludeAll()
+                .OrderBy(p => p.Name)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetPageAsync(Pager pager)
+        {            
+            var entitiesCount = await entities.CountAsync();
+            if (pager.CurrentPage < 1 || entitiesCount <= pager.EntitiesToSkip)
+                throw new NotFoundException($"Page {pager.CurrentPage} doesn't exist");
+            return await entities
+                .IncludeAll()
+                .OrderBy(p => p.Name)
+                .Skip(pager.EntitiesToSkip.Value)
+                .Take(pager.PageSize.Value)
+                .ToListAsync();
         }
 
         public async Task<TEntity> FindAsync(Guid id)
         {
-            return await entities.IncludeAll().SingleOrDefaultAsync(p => p.Id == id);
+            return await entities
+                .IncludeAll()
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)
@@ -38,6 +58,6 @@ namespace Chilicki.StarWars.Data.Repositories
         public void Remove(TEntity entity)
         {
             entities.Remove(entity);
-        }
+        }   
     }
 }

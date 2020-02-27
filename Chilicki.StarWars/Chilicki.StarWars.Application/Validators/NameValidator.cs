@@ -1,5 +1,5 @@
 ﻿using Chilicki.StarWars.Application.Dtos;
-using Chilicki.StarWars.Application.Helpers.Exceptions;
+using Chilicki.StarWars.Data.Helpers.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;

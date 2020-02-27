@@ -1,5 +1,4 @@
-﻿using Chilicki.StarWars.Application.Dtos.Characters;
-using Chilicki.StarWars.Application.Dtos.Episodes;
+﻿using Chilicki.StarWars.Application.Dtos.Episodes;
 using Chilicki.StarWars.Application.Factories;
 using Chilicki.StarWars.Application.Services;
 using Chilicki.StarWars.Application.Updaters;

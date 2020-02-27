@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Chilicki.StarWars.Application.Configurations.Automapper;
+using Chilicki.StarWars.Application.Dtos;
 using Chilicki.StarWars.Application.Dtos.Characters;
 using Chilicki.StarWars.Application.Dtos.Episodes;
 using Chilicki.StarWars.Application.Factories;
+using Chilicki.StarWars.Application.Factories.Paging;
 using Chilicki.StarWars.Application.Services;
 using Chilicki.StarWars.Application.Updaters;
 using Chilicki.StarWars.Application.Validators;
@@ -49,6 +51,7 @@ namespace Chilicki.StarWars.Application.Configurations.DependencyInjection
             services.AddScoped<EpisodeUpdater>();
             services.AddScoped<CharacterEpisodeFactory>();
             services.AddScoped<CharacterFriendFactory>();
+            services.AddScoped(typeof(PageFactory<>));
         }
 
         private void ConfigureAutomapper(IServiceCollection services)

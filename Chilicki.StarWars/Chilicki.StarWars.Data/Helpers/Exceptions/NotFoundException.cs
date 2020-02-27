@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Chilicki.StarWars.Application.Helpers.Exceptions
+namespace Chilicki.StarWars.Data.Helpers.Exceptions
 {
     public class NotFoundException : Exception
     {

@@ -7,6 +7,7 @@ using Chilicki.StarWars.Application.Services;
 using Chilicki.StarWars.Application.Updaters;
 using Chilicki.StarWars.Application.Validators;
 using Chilicki.StarWars.Data.Entities;
+using Chilicki.StarWars.Data.Helpers.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace Chilicki.StarWars.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CrudController<TEntity, TDto, TDataDto, TFactory, TUpdater, TValidator> : ControllerBase
-        where TEntity : BaseEntity
+        where TEntity : BaseNamedEntity
         where TDto : IDto
         where TDataDto : IDataDto
         where TFactory : IFactory<TEntity, TDataDto>
         where TUpdater : IUpdater<TEntity, TDataDto>
         where TValidator : IValidator<TEntity, TDataDto>
     {
-        private readonly CrudService<TEntity, TDto, TDataDto, TFactory, TUpdater, TValidator> service;
+        protected readonly CrudService<TEntity, TDto, TDataDto, TFactory, TUpdater, TValidator> service;
 
         public CrudController(
             CrudService<TEntity, TDto, TDataDto, TFactory, TUpdater, TValidator> service)
@@ -32,8 +33,13 @@ namespace Chilicki.StarWars.WebApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get()
-            => Ok(await service.GetAll());
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get(int? currentPage, int? pageSize)
+        {
+            if (currentPage == null || pageSize == null)
+                return Ok(await service.GetAll());
+            return Ok(await service.GetPage(new Pager(currentPage, pageSize)));
+        }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

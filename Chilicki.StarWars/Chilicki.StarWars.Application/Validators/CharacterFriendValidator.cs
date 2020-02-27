@@ -1,4 +1,4 @@
-﻿using Chilicki.StarWars.Application.Helpers.Exceptions;
+﻿using Chilicki.StarWars.Data.Helpers.Exceptions;
 using Chilicki.StarWars.Data.Entities;
 using System;
 using System.Collections.Generic;
