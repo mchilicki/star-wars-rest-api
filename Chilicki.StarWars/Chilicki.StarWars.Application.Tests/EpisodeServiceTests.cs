@@ -128,6 +128,21 @@ namespace Chilicki.StarWars.Application.Tests
         }
 
         [Fact]
+        public async void TestUpdateWithWrongId()
+        {
+            repository.Setup(p => p.FindAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult((Episode)null));
+            var dataDto = new EpisodeDataDto()
+            {
+                Name = "Updated Episode",
+            };
+            await Assert.ThrowsAsync<NotFoundException>(
+                async () =>
+                await service.Update(Guid.NewGuid(), dataDto)
+            );
+        }
+
+        [Fact]
         public async void TestUpdateWithNull()
         {
             var entites = await service.GetAll();
