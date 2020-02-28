@@ -10,6 +10,7 @@ using Chilicki.StarWars.Application.Updaters;
 using Chilicki.StarWars.Application.Validators;
 using Chilicki.StarWars.Data.Databases.UnitOfWorks;
 using Chilicki.StarWars.Data.Entities;
+using Chilicki.StarWars.Data.Helpers.Exceptions;
 using Chilicki.StarWars.Data.Helpers.Paging;
 using Chilicki.StarWars.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,8 +59,11 @@ namespace Chilicki.StarWars.Application.Tests
                 .Setup(p => p.GetAllAsync())
                 .Returns(Task.FromResult(repositoryEpisodes));
             repository
-                .Setup(p => p.GetPageAsync(It.IsAny<Pager>()))
+                .Setup(p => p.GetPageAsync(It.Is<Pager>(e => e.PageSize == 3)))
                 .Returns(Task.FromResult(repositoryEpisodes.Take(3)));
+            repository
+                .Setup(p => p.GetPageAsync(It.Is<Pager>(e => e.PageSize == 2)))
+                .Returns(Task.FromResult(repositoryEpisodes.Take(2)));
             repository
                 .Setup(p => p.FindAsync(It.IsAny<Guid>()))
                 .Returns(Task.FromResult(repositoryEpisodes.First()));
@@ -91,12 +95,68 @@ namespace Chilicki.StarWars.Application.Tests
 
         [Theory]
         [InlineData(1, 3)]
+        [InlineData(2, 3)]
+        [InlineData(1, 2)]
+        [InlineData(2, 2)]
         public async void TestGetPage(int? currentPage, int? pageSize)
         {
             var page = await service.GetPage(new Pager(currentPage, pageSize));
             Assert.NotNull(page);
             Assert.True(page.Items.Count() == pageSize);
             Assert.Equal(page.Items.First().Name, repositoryEpisodes.First().Name);
+        }
+        
+        [Fact]
+        public async void TestFind()
+        {
+            var entities = await service.GetAll();
+            var entity = await service.Find(entities.First().Id);
+            Assert.NotNull(entity);
+            Assert.Equal(entity.Id, entities.First().Id);
+            Assert.Equal(entity.Name, entities.First().Name);
+        }
+
+        [Fact]
+        public async void TestCorrectUpdate()
+        {
+            var entites = await service.GetAll();
+            var dataDto = new EpisodeDataDto()
+            {
+                Name = "Updated Episode",
+            };
+            await service.Update(entites.First().Id, dataDto);
+        }
+
+        [Fact]
+        public async void TestUpdateWithNull()
+        {
+            var entites = await service.GetAll();
+            EpisodeDataDto dataDto = null;
+            await Assert.ThrowsAsync<BadRequestException>(
+                async ()  => 
+                await service.Update(entites.First().Id, dataDto)
+            );            
+        }
+
+        [Fact]
+        public async void TestUpdateWithNullName()
+        {
+            var entites = await service.GetAll();
+            EpisodeDataDto dataDto = new EpisodeDataDto()
+            {
+                Name = null,
+            };
+            await Assert.ThrowsAsync<BadRequestException>(
+                async () =>
+                await service.Update(entites.First().Id, dataDto)
+            );
+        }
+
+        [Fact]
+        public async void TestDelete()
+        {
+            var entites = await service.GetAll();
+            await service.Delete(entites.First().Id);
         }
     }
 }

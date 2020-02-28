@@ -8,10 +8,10 @@ namespace Chilicki.StarWars.Application.Validators
 {
     public class NullValidator
     {
-        public void Validate(BaseEntity entity)
+        public void Validate(object obj)
         {
-            if (entity == null)
-                throw new NotFoundException($"{typeof(BaseEntity).Name} not found");
+            if (obj == null)
+                throw new BadRequestException("Some request parameters hasn't been sent");
         }
     }
 }

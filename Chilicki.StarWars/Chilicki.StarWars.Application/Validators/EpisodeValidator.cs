@@ -27,7 +27,8 @@ namespace Chilicki.StarWars.Application.Validators
 
         public void ValidateAddOrUpdate(EpisodeDataDto dto)
         {
-            nameValidator.Validate(dto);
+            nullValidator.Validate(dto);
+            nameValidator.Validate(dto.Name);
         }
     }
 }

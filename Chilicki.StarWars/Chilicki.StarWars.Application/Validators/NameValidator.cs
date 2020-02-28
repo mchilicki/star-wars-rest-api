@@ -10,11 +10,11 @@ namespace Chilicki.StarWars.Application.Validators
     {
         private readonly int NAME_MAX_CHARACTERS = 100;
 
-        public void Validate(NamedDataDto dto)
+        public void Validate(string name)
         {
-            if (string.IsNullOrWhiteSpace(dto.Name))
+            if (string.IsNullOrWhiteSpace(name))
                 throw new BadRequestException("Name is empty.");
-            if (dto.Name.Length > NAME_MAX_CHARACTERS)
+            if (name.Length > NAME_MAX_CHARACTERS)
                 throw new BadRequestException($"Name is too long. Maximum length is {NAME_MAX_CHARACTERS} characters.");
         }
     }

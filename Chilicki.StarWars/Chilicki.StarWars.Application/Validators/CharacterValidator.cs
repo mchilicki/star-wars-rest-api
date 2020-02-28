@@ -10,22 +10,22 @@ namespace Chilicki.StarWars.Application.Validators
 {
     public class CharacterValidator : IValidator<Character, CharacterDataDto>
     {
-        private readonly NullValidator validator;
+        private readonly NullValidator nullValidator;
 
         public CharacterValidator(
             NullValidator validator)
         {
-            this.validator = validator;
+            this.nullValidator = validator;
         }
 
         public void ValidateFind(Character character)
         {
-            validator.Validate(character);
+            nullValidator.Validate(character);
         }
 
         public void ValidateAddOrUpdate(CharacterDataDto dto)
         {
-            
+            nullValidator.Validate(dto);
         }
     }
 }
